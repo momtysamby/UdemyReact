@@ -9,13 +9,14 @@ class App extends Component {
     super(props);
     console.log('[App.js] constructor');
   }
+  personsList = [
+    { id: 'asfa1', name: 'Max', age: 28 },
+    { id: 'vasdf1', name: 'Manu', age: 29 },
+    { id: 'asdf11', name: 'Stephanie', age: 26 }
+  ]
 
   state = {
-    persons: [
-      { id: 'asfa1', name: 'Max', age: 28 },
-      { id: 'vasdf1', name: 'Manu', age: 29 },
-      { id: 'asdf11', name: 'Stephanie', age: 26 }
-    ],
+    persons: this.personsList,
     otherState: 'some other value',
     showPersons: false
   };
@@ -25,9 +26,9 @@ class App extends Component {
     return state;
   }
 
-  componentWillMount() {
-    console.log('[App.js] componentWillMount');
-  }
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
 
   componentDidMount() {
     console.log('[App.js] componentDidMount');
@@ -62,6 +63,9 @@ class App extends Component {
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
+    if (this.state.persons.length === 0) {
+      this.setState({persons: this.personsList})
+    }
   };
 
   render() {
